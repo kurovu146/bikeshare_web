@@ -4,7 +4,6 @@ import { login } from "./controllers/login/login";
 import cookieParser from "cookie-parser";
 import {json, urlencoded} from "body-parser";
 import { register } from "./controllers/register/register";
-import { pricing } from "./controllers/pricing/pricing";
 
 const app = express();
 
@@ -17,7 +16,6 @@ app.use(cookieParser());
 
 app.post("/login", login);
 app.post("/register", register);
-app.post("/pricing", pricing);
 app.use("/", controller);
     
 

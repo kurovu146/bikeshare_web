@@ -2,7 +2,7 @@
 
 <head>
     <title>
-        Quan ly ki tuc xa
+        BikeShare
     </title>
     <link rel='stylesheet' href='./css/login.css' />
 </head>
@@ -13,12 +13,12 @@
             <h1>Đăng nhập</h1>
             <hr>
                 <label for="username"><b>Tên đăng nhập</b></label>
-                <input type="text" placeholder="Username" name="username" id="username">
+                <input type="text" placeholder="Username" name="username" valueid="username">
                 <label for="password"><b>Mật khẩu</b></label>
                 <input type="password" placeholder="******" name="password" id="password">
             <hr>
             
-                <p><%= validate %></p>
+                <p style="color:red"><%= validate %></p>
               
             <button type="submit" class="submit">Đăng nhập</button>
         </div>

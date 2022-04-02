@@ -1,13 +1,17 @@
 import express, { Request, Response } from "express";
 import { MySQLDb } from "../../db/db";
 
-export const pricing = (req: Request<{}, {}, { username: string, password: string }>, res: Response) => {
+type statusbike = {
+    statusbikeID: string, 
+    statuslock: string,
+    longitude: number,
+    latitude: number
+}
+
+export const history = (req: Request<{}, {}, statusbike>, res: Response) => {
     //TODO
     const mysql = MySQLDb.getInstance();
     const db = mysql.db;
-
-    let username = req.body.username;
-    let password = req.body.password;
 
     db.query(`SELECT * FROM users WHERE username = "${username}" AND password = "${password}"`,function(err, results) {
         if (err) throw err;

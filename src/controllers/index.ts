@@ -9,7 +9,7 @@ controller.get("/", (req: Request, res: Response) => {
         res.redirect("/login");
         return;
     }
-    res.render("index");
+    res.render("homepage");
 })
 
 controller.get("/login", (req: Request, res: Response) => {
@@ -24,10 +24,43 @@ controller.get("/register", (req: Request, res: Response) => {
     res.render("register", {result: ""});
 })
 
-controller.get("/pricing", (req: Request, res: Response) => {
-    res.render("pricing");
+controller.get("/homepage", (req: Request, res: Response) => {
+    res.render("homepage");
 })
 
+controller.get("/info", (req: Request, res: Response) => {
+    const mysql = MySQLDb.getInstance();
+    const db = mysql.db;
+
+    db.query(`SELECT * FROM users`, function(err, results) {
+        if (err) throw err;
+        const user = formatData(results)
+        res.render("info", { user })
+    })
+})
+
+controller.get("/wallet", (req: Request, res: Response) => {
+    res.render("wallet");
+})
+
+controller.get("/ticket", (req: Request, res: Response) => {
+    res.render("ticket");
+})
+
+controller.get("/history", (req: Request, res: Response) => {
+    const mysql = MySQLDb.getInstance();
+    const db = mysql.db;
+
+    db.query(`SELECT * FROM statusbike`, function(err, results) {
+        if (err) throw err;
+        const history = results;
+        res.render("history", { history })
+    })
+})
+
+controller.get("/instruction", (req: Request, res: Response) => {
+    res.render("instruction");
+})
 
 function formatData(data: any[]) {
     const formattedData = data.map((i: any) => {
